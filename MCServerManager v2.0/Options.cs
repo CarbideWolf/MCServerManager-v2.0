@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MCServerManager_v2._0
 {
-    public partial class Form1 : Form
+    public partial class Options : Form
     {
-        public Form1()
+        public Options()
         {
             InitializeComponent();
         }
