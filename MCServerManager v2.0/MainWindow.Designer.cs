@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,31 +103,31 @@
             this.setWorldSpawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.worldBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.serverOutput = new System.Windows.Forms.RichTextBox();
-            this.programLog = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            serverOutput = new System.Windows.Forms.RichTextBox();
+            programLog = new System.Windows.Forms.RichTextBox();
+            this.sendButton = new System.Windows.Forms.Button();
             this.commandInput = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.menuStrip1.SuspendLayout();
+            this.backupButton = new System.Windows.Forms.Button();
+            this.saveAllButton = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.restartButton = new System.Windows.Forms.Button();
+            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.commandsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(841, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(841, 24);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -142,21 +142,21 @@
             // startServerToolStripMenuItem
             // 
             this.startServerToolStripMenuItem.Name = "startServerToolStripMenuItem";
-            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.startServerToolStripMenuItem.Text = "Start Server";
             this.startServerToolStripMenuItem.Click += new System.EventHandler(this.startServerToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.optionsToolStripMenuItem.Text = "Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -660,48 +660,48 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.serverOutput);
+            this.splitContainer2.Panel1.Controls.Add(serverOutput);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.programLog);
+            this.splitContainer2.Panel2.Controls.Add(programLog);
             this.splitContainer2.Size = new System.Drawing.Size(817, 440);
             this.splitContainer2.SplitterDistance = 306;
             this.splitContainer2.TabIndex = 2;
             // 
             // serverOutput
             // 
-            this.serverOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            serverOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.serverOutput.Location = new System.Drawing.Point(3, 3);
-            this.serverOutput.Name = "serverOutput";
-            this.serverOutput.ReadOnly = true;
-            this.serverOutput.Size = new System.Drawing.Size(811, 300);
-            this.serverOutput.TabIndex = 0;
-            this.serverOutput.Text = "";
+            serverOutput.Location = new System.Drawing.Point(3, 3);
+            serverOutput.Name = "serverOutput";
+            serverOutput.ReadOnly = true;
+            serverOutput.Size = new System.Drawing.Size(811, 300);
+            serverOutput.TabIndex = 0;
+            serverOutput.Text = "";
             // 
             // programLog
             // 
-            this.programLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            programLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.programLog.Location = new System.Drawing.Point(3, 3);
-            this.programLog.Name = "programLog";
-            this.programLog.ReadOnly = true;
-            this.programLog.Size = new System.Drawing.Size(811, 124);
-            this.programLog.TabIndex = 0;
-            this.programLog.Text = "";
+            programLog.Location = new System.Drawing.Point(3, 3);
+            programLog.Name = "programLog";
+            programLog.ReadOnly = true;
+            programLog.Size = new System.Drawing.Size(811, 124);
+            programLog.TabIndex = 0;
+            programLog.Text = "";
             // 
-            // button1
+            // sendButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(728, 500);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 38);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
+            this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sendButton.Location = new System.Drawing.Point(728, 500);
+            this.sendButton.Name = "sendButton";
+            this.sendButton.Size = new System.Drawing.Size(98, 38);
+            this.sendButton.TabIndex = 3;
+            this.sendButton.Text = "Send";
+            this.sendButton.UseVisualStyleBackColor = true;
             // 
             // commandInput
             // 
@@ -712,67 +712,67 @@
             this.commandInput.Size = new System.Drawing.Size(811, 20);
             this.commandInput.TabIndex = 4;
             // 
-            // button2
+            // backupButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(119, 500);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 38);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Backup";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.backupButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.backupButton.Location = new System.Drawing.Point(119, 500);
+            this.backupButton.Name = "backupButton";
+            this.backupButton.Size = new System.Drawing.Size(98, 38);
+            this.backupButton.TabIndex = 5;
+            this.backupButton.Text = "Backup";
+            this.backupButton.UseVisualStyleBackColor = true;
+            this.backupButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // saveAllButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(15, 500);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 38);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Save All";
-            this.button3.UseVisualStyleBackColor = true;
+            this.saveAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveAllButton.Location = new System.Drawing.Point(15, 500);
+            this.saveAllButton.Name = "saveAllButton";
+            this.saveAllButton.Size = new System.Drawing.Size(98, 38);
+            this.saveAllButton.TabIndex = 6;
+            this.saveAllButton.Text = "Save All";
+            this.saveAllButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // stopButton
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button4.Location = new System.Drawing.Point(223, 500);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(98, 38);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Stop";
-            this.button4.UseVisualStyleBackColor = true;
+            this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.stopButton.Location = new System.Drawing.Point(223, 500);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(98, 38);
+            this.stopButton.TabIndex = 7;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // restartButton
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button5.Location = new System.Drawing.Point(327, 500);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(98, 38);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Restart";
-            this.button5.UseVisualStyleBackColor = true;
+            this.restartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.restartButton.Location = new System.Drawing.Point(327, 500);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(98, 38);
+            this.restartButton.TabIndex = 8;
+            this.restartButton.Text = "Restart";
+            this.restartButton.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 550);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.restartButton);
+            this.Controls.Add(this.stopButton);
+            this.Controls.Add(this.saveAllButton);
+            this.Controls.Add(this.backupButton);
             this.Controls.Add(this.commandInput);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sendButton);
             this.Controls.Add(this.splitContainer2);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainWindow";
             this.Text = "MCServerManager v2.0";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -784,20 +784,19 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startServerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.RichTextBox serverOutput;
-        private System.Windows.Forms.RichTextBox programLog;
-        private System.Windows.Forms.Button button1;
+        private static System.Windows.Forms.RichTextBox serverOutput;
+        private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox commandInput;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button backupButton;
+        private System.Windows.Forms.Button saveAllButton;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button restartButton;
         private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bansToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem banToolStripMenuItem;
@@ -866,6 +865,7 @@
         private System.Windows.Forms.ToolStripMenuItem setBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setWorldSpawnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem worldBorderToolStripMenuItem;
+        private static System.Windows.Forms.RichTextBox programLog;
     }
 }
 

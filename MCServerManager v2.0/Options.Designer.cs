@@ -37,36 +37,40 @@
             this.maxRAMLabel = new System.Windows.Forms.Label();
             this.permGenLabel = new System.Windows.Forms.Label();
             this.serverNameLabel = new System.Windows.Forms.Label();
-            this.ok = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.jvmArgsBox = new System.Windows.Forms.TextBox();
+            this.jvmArgsLabel = new System.Windows.Forms.Label();
+            this.backupFrequencyBox = new System.Windows.Forms.TextBox();
+            this.backupFrequencyLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // minRAMBox
             // 
             this.minRAMBox.Location = new System.Drawing.Point(96, 12);
             this.minRAMBox.Name = "minRAMBox";
-            this.minRAMBox.Size = new System.Drawing.Size(203, 20);
+            this.minRAMBox.Size = new System.Drawing.Size(252, 20);
             this.minRAMBox.TabIndex = 4;
             // 
             // maxRAMBox
             // 
             this.maxRAMBox.Location = new System.Drawing.Point(96, 38);
             this.maxRAMBox.Name = "maxRAMBox";
-            this.maxRAMBox.Size = new System.Drawing.Size(203, 20);
+            this.maxRAMBox.Size = new System.Drawing.Size(252, 20);
             this.maxRAMBox.TabIndex = 5;
             // 
             // permGenBox
             // 
             this.permGenBox.Location = new System.Drawing.Point(96, 64);
             this.permGenBox.Name = "permGenBox";
-            this.permGenBox.Size = new System.Drawing.Size(203, 20);
+            this.permGenBox.Size = new System.Drawing.Size(252, 20);
             this.permGenBox.TabIndex = 6;
             // 
             // serverNameBox
             // 
             this.serverNameBox.Location = new System.Drawing.Point(96, 90);
             this.serverNameBox.Name = "serverNameBox";
-            this.serverNameBox.Size = new System.Drawing.Size(203, 20);
+            this.serverNameBox.Size = new System.Drawing.Size(252, 20);
             this.serverNameBox.TabIndex = 7;
             // 
             // minRAMLabel
@@ -105,31 +109,71 @@
             this.serverNameLabel.TabIndex = 11;
             this.serverNameLabel.Text = "Jarfile Name";
             // 
-            // ok
+            // okButton
             // 
-            this.ok.Location = new System.Drawing.Point(13, 133);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 12;
-            this.ok.Text = "Ok";
-            this.ok.UseVisualStyleBackColor = true;
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.okButton.Location = new System.Drawing.Point(12, 175);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 12;
+            this.okButton.Text = "Ok";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.ok_Click);
             // 
-            // cancel
+            // cancelButton
             // 
-            this.cancel.Location = new System.Drawing.Point(224, 133);
-            this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(75, 23);
-            this.cancel.TabIndex = 13;
-            this.cancel.Text = "Cancel";
-            this.cancel.UseVisualStyleBackColor = true;
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Location = new System.Drawing.Point(266, 175);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 13;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // jvmArgsBox
+            // 
+            this.jvmArgsBox.Location = new System.Drawing.Point(145, 117);
+            this.jvmArgsBox.Name = "jvmArgsBox";
+            this.jvmArgsBox.Size = new System.Drawing.Size(203, 20);
+            this.jvmArgsBox.TabIndex = 14;
+            // 
+            // jvmArgsLabel
+            // 
+            this.jvmArgsLabel.AutoSize = true;
+            this.jvmArgsLabel.Location = new System.Drawing.Point(12, 120);
+            this.jvmArgsLabel.Name = "jvmArgsLabel";
+            this.jvmArgsLabel.Size = new System.Drawing.Size(119, 13);
+            this.jvmArgsLabel.TabIndex = 15;
+            this.jvmArgsLabel.Text = "Custom JVM Arguments";
+            // 
+            // backupFrequencyBox
+            // 
+            this.backupFrequencyBox.Location = new System.Drawing.Point(145, 144);
+            this.backupFrequencyBox.Name = "backupFrequencyBox";
+            this.backupFrequencyBox.Size = new System.Drawing.Size(203, 20);
+            this.backupFrequencyBox.TabIndex = 16;
+            // 
+            // backupFrequencyLabel
+            // 
+            this.backupFrequencyLabel.AutoSize = true;
+            this.backupFrequencyLabel.Location = new System.Drawing.Point(12, 147);
+            this.backupFrequencyLabel.Name = "backupFrequencyLabel";
+            this.backupFrequencyLabel.Size = new System.Drawing.Size(127, 13);
+            this.backupFrequencyLabel.TabIndex = 17;
+            this.backupFrequencyLabel.Text = "Backup Frequency (mins)";
             // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 168);
-            this.Controls.Add(this.cancel);
-            this.Controls.Add(this.ok);
+            this.ClientSize = new System.Drawing.Size(353, 210);
+            this.Controls.Add(this.backupFrequencyLabel);
+            this.Controls.Add(this.backupFrequencyBox);
+            this.Controls.Add(this.jvmArgsLabel);
+            this.Controls.Add(this.jvmArgsBox);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.serverNameLabel);
             this.Controls.Add(this.permGenLabel);
             this.Controls.Add(this.maxRAMLabel);
@@ -157,7 +201,11 @@
         private System.Windows.Forms.Label maxRAMLabel;
         private System.Windows.Forms.Label permGenLabel;
         private System.Windows.Forms.Label serverNameLabel;
-        private System.Windows.Forms.Button ok;
-        private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox jvmArgsBox;
+        private System.Windows.Forms.Label jvmArgsLabel;
+        private System.Windows.Forms.TextBox backupFrequencyBox;
+        private System.Windows.Forms.Label backupFrequencyLabel;
     }
 }

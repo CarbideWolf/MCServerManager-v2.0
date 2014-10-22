@@ -18,17 +18,24 @@ namespace MCServerManager_v2._0
         //Create the process to run the JRE
         static Process mcServer = new Process();
 
+        static Process backup = new Process();
+
         //Initialise string variables
-        static string minRAM = "";
-        static string maxRAM = "";
-        static string permGen = "";
-        static string serverName = "";
+        public static string minRAM = "";
+        public static string maxRAM = "";
+        public static string permGen = "";
+        public static string serverName = "";
+        public static string jvmArgs = "";
+        public static int backupFrequency = 0;
+
+        public static Thread backupThread = new Thread(new ThreadStart(BackupThread));
+        public static Thread serverOutputThread = new Thread(new ThreadStart(ServerOutputThread));
 
         public MainWindow()
         {
-            InitializeComponent();
-
             ReadConfigs();
+
+            InitializeComponent();
 
             Process mkdir = new Process();
 
@@ -47,6 +54,8 @@ namespace MCServerManager_v2._0
             {
                 programLog.AppendText(e.ToString());
             }
+
+            backupThread.Start();
         }
 
         public static void ReadConfigs()
@@ -60,30 +69,57 @@ namespace MCServerManager_v2._0
                 maxRAM = configReader.ReadInt32().ToString();
                 permGen = configReader.ReadInt32().ToString();
                 serverName = configReader.ReadString();
+                jvmArgs = configReader.ReadString();
+                backupFrequency = configReader.ReadInt32();
+
+                serverName = serverName.Replace(".jar", "");
+
+                configReader.Close();
+                configStream.Close();
             }
-            catch (FileNotFoundException)
+            catch(FileNotFoundException)
             {
                 GenerateConfigs();
             }
+            catch(Exception e)
+            {
+                FileStream crashStream = new FileStream("crash.txt", FileMode.Create);
+                BinaryWriter crashWriter = new BinaryWriter(crashStream);
+
+                crashWriter.Write(e.ToString());
+
+                crashWriter.Close();
+                crashStream.Close();
+
+                Environment.Exit(0);
+            }
+        }
+
+        public static void WriteConfigs()
+        {
+            FileStream configStream = new FileStream("configs.dat", FileMode.Create);
+            BinaryWriter configWriter = new BinaryWriter(configStream);
+
+            configWriter.Write(Convert.ToInt32(minRAM));
+            configWriter.Write(Convert.ToInt32(maxRAM));
+            configWriter.Write(Convert.ToInt32(permGen));
+            configWriter.Write(serverName);
+            configWriter.Write(jvmArgs);
+            configWriter.Write(backupFrequency);
+
+            configWriter.Close();
+            configStream.Close();
         }
 
         public static void GenerateConfigs()
         {
-            int minRAM = 1024;
-            int maxRAM = 1024;
-            int permGen = 128;
-            string serverName = "server.jar";
+            minRAM = "1024";
+            maxRAM = "1024";
+            permGen = "128";
+            serverName = "server.jar";
+            backupFrequency = 60;
 
-            FileStream configStream = new FileStream("configs.dat", FileMode.Create);
-            BinaryWriter configWriter = new BinaryWriter(configStream);
-
-            configWriter.Write(minRAM);
-            configWriter.Write(maxRAM);
-            configWriter.Write(permGen);
-            configWriter.Write(serverName);
-
-            configWriter.Close();
-            configStream.Close();
+            WriteConfigs();
 
             ReadConfigs();
         }
@@ -100,7 +136,7 @@ namespace MCServerManager_v2._0
                 //Create strings to hold the jar location, java location and jvm arguments
                 string javaVersion = "jre" + n;
                 string javaLocation = "C:\\Program Files\\Java\\" + javaVersion + "\\bin\\javaw.exe";
-                string serverArgs = String.Format("-jar server.jar -Xms{0}m -Xmx{1}m -XX:MaxPermSize={2}m", minRAM, maxRAM, permGen);
+                string serverArgs = String.Format("-jar {0}.jar -Xms{1}m -Xmx{2}m -XX:MaxPermSize={3}m {4}", serverName, minRAM, maxRAM, permGen, jvmArgs);
 
                 try
                 {
@@ -109,6 +145,7 @@ namespace MCServerManager_v2._0
                     mcServer.StartInfo.Arguments = serverArgs;
                     mcServer.StartInfo.UseShellExecute = false;
                     mcServer.StartInfo.RedirectStandardInput = true;
+                    mcServer.StartInfo.RedirectStandardOutput = true;
                     mcServer.StartInfo.WorkingDirectory = "Server";
 
                     //Start the server
@@ -122,11 +159,8 @@ namespace MCServerManager_v2._0
             }
         }
 
-        public void Backup()
+        private static void Backup()
         {
-            //Create new process
-            Process backup = new Process();
-
             //Tell process what program to run and with what arguments
             backup.StartInfo.FileName = "xcopy.exe";
             backup.StartInfo.Arguments = String.Format("Server\\* Backup /e /h /y /i");
@@ -142,6 +176,37 @@ namespace MCServerManager_v2._0
             }
         }
 
+        private static void BackupThread()
+        {
+            Thread.Sleep(backupFrequency * 60000);
+
+            mcServer.StandardInput.WriteLine("say Server is going down temporarily for a backup");
+            Thread.Sleep(5000);
+
+            mcServer.StandardInput.WriteLine("save-all");
+            Thread.Sleep(3000);
+            mcServer.StandardInput.WriteLine("stop");
+            Thread.Sleep(10000);
+
+            Backup();
+
+            backup.WaitForExit();
+
+            StartServer();
+        }
+
+        public static void ServerOutputThread()
+        {
+            Thread.Sleep(5000);
+
+            while(true)
+            {
+                string text = mcServer.StandardOutput.ReadToEnd();
+
+                serverOutput.AppendText(text);
+            }
+        }
+
         private void startServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StartServer();
@@ -149,6 +214,8 @@ namespace MCServerManager_v2._0
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            backupThread.Abort();
+
             this.Close();
         }
 
@@ -159,7 +226,8 @@ namespace MCServerManager_v2._0
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Options();
+            Options options = new Options();
+            options.Show();
         }
     }
 }
