@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MCServerManager_v2._0
 {
@@ -19,6 +20,7 @@ namespace MCServerManager_v2._0
             Application.Run(new MainWindow());
 
             MainWindow.backupThread.Abort();
+            MainWindow.serverOutputThread.Abort();
         }
     }
 }

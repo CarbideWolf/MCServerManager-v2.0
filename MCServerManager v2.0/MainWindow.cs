@@ -29,7 +29,7 @@ namespace MCServerManager_v2._0
         public static int backupFrequency = 0;
 
         public static Thread backupThread = new Thread(new ThreadStart(BackupThread));
-        public static Thread serverOutputThread = new Thread(new ThreadStart(ServerOutputThread));
+        public static Thread serverOutputThread;
 
         public MainWindow()
         {
@@ -150,6 +150,10 @@ namespace MCServerManager_v2._0
 
                     //Start the server
                     mcServer.Start();
+
+                    //mcServer.WaitForExit();
+
+                    //serverOutputThread.Abort();
                 }
                 catch (Win32Exception)
                 {
@@ -195,21 +199,25 @@ namespace MCServerManager_v2._0
             StartServer();
         }
 
-        public static void ServerOutputThread()
+        public void ServerOutputThread()
         {
             Thread.Sleep(5000);
 
             while(true)
             {
-                string text = mcServer.StandardOutput.ReadToEnd();
-
-                serverOutput.AppendText(text);
+                serverOutput.AppendText(mcServer.StandardOutput.ReadLine() + "\r\n");
             }
         }
 
         private void startServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            serverOutputThread = new Thread(new ThreadStart(ServerOutputThread));
+
             StartServer();
+
+            serverOutputThread.Start();
+
+            Application.DoEvents();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -219,7 +227,7 @@ namespace MCServerManager_v2._0
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void backupButton_Click(object sender, EventArgs e)
         {
             Backup();
         }
@@ -228,6 +236,13 @@ namespace MCServerManager_v2._0
         {
             Options options = new Options();
             options.Show();
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            mcServer.StandardInput.WriteLine("stop");
+
+            serverOutputThread.Abort();
         }
     }
 }

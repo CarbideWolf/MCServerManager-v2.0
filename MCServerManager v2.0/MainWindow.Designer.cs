@@ -103,7 +103,7 @@
             this.setWorldSpawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.worldBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            serverOutput = new System.Windows.Forms.RichTextBox();
+            this.serverOutput = new System.Windows.Forms.RichTextBox();
             programLog = new System.Windows.Forms.RichTextBox();
             this.sendButton = new System.Windows.Forms.Button();
             this.commandInput = new System.Windows.Forms.TextBox();
@@ -660,7 +660,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(serverOutput);
+            this.splitContainer2.Panel1.Controls.Add(this.serverOutput);
             // 
             // splitContainer2.Panel2
             // 
@@ -671,15 +671,15 @@
             // 
             // serverOutput
             // 
-            serverOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.serverOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            serverOutput.Location = new System.Drawing.Point(3, 3);
-            serverOutput.Name = "serverOutput";
-            serverOutput.ReadOnly = true;
-            serverOutput.Size = new System.Drawing.Size(811, 300);
-            serverOutput.TabIndex = 0;
-            serverOutput.Text = "";
+            this.serverOutput.Location = new System.Drawing.Point(3, 3);
+            this.serverOutput.Name = "serverOutput";
+            this.serverOutput.ReadOnly = true;
+            this.serverOutput.Size = new System.Drawing.Size(811, 300);
+            this.serverOutput.TabIndex = 0;
+            this.serverOutput.Text = "";
             // 
             // programLog
             // 
@@ -721,7 +721,7 @@
             this.backupButton.TabIndex = 5;
             this.backupButton.Text = "Backup";
             this.backupButton.UseVisualStyleBackColor = true;
-            this.backupButton.Click += new System.EventHandler(this.button2_Click);
+            this.backupButton.Click += new System.EventHandler(this.backupButton_Click);
             // 
             // saveAllButton
             // 
@@ -742,6 +742,7 @@
             this.stopButton.TabIndex = 7;
             this.stopButton.Text = "Stop";
             this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // restartButton
             // 
@@ -790,7 +791,6 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private static System.Windows.Forms.RichTextBox serverOutput;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox commandInput;
         private System.Windows.Forms.Button backupButton;
@@ -865,6 +865,7 @@
         private System.Windows.Forms.ToolStripMenuItem setBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setWorldSpawnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem worldBorderToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox serverOutput;
         private static System.Windows.Forms.RichTextBox programLog;
     }
 }
