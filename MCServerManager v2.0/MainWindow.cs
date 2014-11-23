@@ -240,6 +240,12 @@ namespace MCServerManager_v2._0
             options.Show();
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
+
         private void stopButton_Click(object sender, EventArgs e)
         {
             if(started == true)
@@ -254,6 +260,10 @@ namespace MCServerManager_v2._0
             }
 
             Backup();
+
+            backupThread.Abort();
+
+            this.Close();
         }
 
         private void sendButton_Click(object sender, EventArgs e)
